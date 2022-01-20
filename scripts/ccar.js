@@ -90,13 +90,13 @@ const createRoiTable = () => {
     total += totalDay;
     tbody.innerHTML += `
       <tr>
-        <td>${day}</td>
-        <td>${fix}</td>
-        <td>${prize.toFixed(2)}</td>
-        <td>${totalDay.toFixed(2)}</td>
-        <td class='${
-          total >= formValues.price ? "positive" : "negative"
-        }'>${total.toFixed(2)}</td>
+        <td class="${typeof day}">${day}</td>
+        <td class="${typeof fix}">${fix}</td>
+        <td class="${typeof prize}">${prize.toFixed(2)}</td>
+        <td class="${typeof totalDay}">${totalDay.toFixed(2)}</td>
+        <td class='${typeof total} ${
+      total >= formValues.price ? "positive" : "negative"
+    }'>${total.toFixed(2)}</td>
       </tr>
     `;
   }
@@ -125,12 +125,12 @@ calcBtn.addEventListener("click", () => {
   createRoiTable();
 });
 
-select.addEventListener("change", (e) => {
+select.addEventListener("change", () => {
   getForm();
   updateDepreciation();
 });
 
-level.addEventListener("change", (e) => {
+level.addEventListener("change", () => {
   getForm();
   updateDepreciation();
 });

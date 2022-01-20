@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Roboto;
+}
+
+body {
+  display: flex;
+  background-color: #34acbc;
+}
+
+.content {
+  background-color: #2b79a7;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+}
+
+/* CAR INFO FORM */
+
+.car-form {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid #34acbc;
+  border-radius: 5px;
+  margin: 1rem;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+  margin: 0.1rem 1rem;
+}
+
+.title {
+  justify-content: center;
+}
+
+.car-form label {
+  padding: 3px 10px;
+  background: #2b79a7;
+  color: #ffffff;
+  border: 0.5px solid #8ed3ff;
+  width: 64%;
+}
+
+.car-form input[type="number"],
+.car-form select {
+  width: 35%;
+  text-align: right;
+  padding: 3px 10px;
+  background: #e9e9e9;
+  border: 0.5px solid #ffffff;
+  box-sizing: border-box;
+  color: #666666;
+}
+
+input[readonly] {
+  background: #ffffff !important;
+  border: 1px solid #e9e9e9 !important;
+  cursor: default;
+}
+
+.base-tables {
+  display: flex;
+}
+
+.btn {
+  margin: 0.3rem;
+  padding: 5px 30px;
+  color: #7b532e;
+  text-transform: uppercase;
+  background: #ffbc57;
+  box-shadow: 2px 2px 0px #e19f3b;
+  border-radius: 30px;
+  border-width: 0;
+}
+
+td.number {
+  text-align: right;
+}

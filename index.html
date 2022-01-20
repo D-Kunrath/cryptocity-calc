@@ -5,31 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CryptoCity Calculator</title>
+    <link rel="stylesheet" href="./styles/style.css" />
     <script src="./scripts/ccar-data.js" defer></script>
     <script src="./scripts/ccar.js" defer></script>
   </head>
   <body>
     <section class="content">
-      <form class="car-input">
-        <label for="price">price</label>
-        <input type="number" id="price" min="0" />
+      <form class="car-form">
+        <span class="row title">car info</span>
+        <span class="row">
+          <label for="price">price: </label>
+          <input type="number" id="price" min="0" />
+        </span>
 
-        <label for="level">level</label>
-        <input type="number" id="level" min="1" step="1" />
+        <span class="row">
+          <label for="level">level: </label>
+          <input type="number" id="level" min="1" step="1" />
+        </span>
 
-        <label for="refuel">refuel</label>
-        <input type="number" id="refuel" min="0" step="1" />
+        <span class="row">
+          <label for="refuel">refuel: </label>
+          <input type="number" id="refuel" min="0" step="1" />
+        </span>
 
-        <label for="fix">fix</label>
-        <input type="number" id="fix" min="0" step="1" />
+        <span class="row">
+          <label for="fix">fix: </label>
+          <input type="number" id="fix" min="0" step="1" />
+        </span>
 
-        <label for="rarity">rarity</label>
-        <select id="rarity"></select>
-        <label for="depreciation">depreciation</label>
-        <input type="number" id="depreciation" readonly />
+        <span class="row">
+          <label for="rarity">rarity: </label>
+          <select id="rarity"></select>
+        </span>
 
-        <input class="reset-btn" type="button" value="reset" />
-        <input class="calc-btn" type="button" value="calculate" />
+        <span class="row">
+          <label for="depreciation">depreciation: </label>
+          <input type="number" id="depreciation" readonly />
+        </span>
+
+        <span class="row">
+          <input class="reset-btn btn" type="button" value="reset" />
+          <input class="calc-btn btn" type="button" value="calculate" />
+        </span>
       </form>
       <div class="base-tables">
         <table id="prize-avg">
