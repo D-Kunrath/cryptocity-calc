@@ -81,6 +81,15 @@ input[readonly] {
   border-width: 0;
 }
 
+table {
+  margin: 1rem;
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 2px 3px;
+}
 td.number {
   text-align: right;
 }
