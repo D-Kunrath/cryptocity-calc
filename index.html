@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CryptoCity Calculator</title>
+    <script src="./scripts/ccar-data.js" defer></script>
+    <script src="./scripts/ccar.js" defer></script>
+  </head>
+  <body>
+    <section class="content">
+      <form class="car-input">
+        <label for="price">price</label>
+        <input type="number" id="price" min="0" />
+
+        <label for="level">level</label>
+        <input type="number" id="level" min="1" step="1" />
+
+        <label for="refuel">refuel</label>
+        <input type="number" id="refuel" min="0" step="1" />
+
+        <label for="fix">fix</label>
+        <input type="number" id="fix" min="0" step="1" />
+
+        <label for="rarity">rarity</label>
+        <select id="rarity"></select>
+        <label for="depreciation">depreciation</label>
+        <input type="number" id="depreciation" readonly />
+
+        <input class="reset-btn" type="button" value="reset" />
+        <input class="calc-btn" type="button" value="calculate" />
+      </form>
+      <div class="base-tables">
+        <table id="prize-avg">
+          <thead>
+            <tr>
+              <th>age</th>
+              <th>average prize</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <table id="rarity-info">
+          <thead>
+            <tr>
+              <th>rarity</th>
+              <th>fuel</th>
+              <th>depreciation</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="info-table">
+      <table id="roi-table">
+        <thead>
+          <tr>
+            <td>age</td>
+            <td>fix</td>
+            <td>prize</td>
+            <td>
+              total / day <span class="helper-mark-day">(?)</span
+              ><span class="helper-day">= prize - fix - refuel</span>
+            </td>
+            <td>
+              total <span class="helper-mark-total">(?)</span
+              ><span class="helper-total"> = sum of daily prizes</span>
+            </td>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </body>
+</html>
