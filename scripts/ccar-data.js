@@ -5,6 +5,7 @@ const initialFormValues = {
   fix: 40,
   rarity: "classic",
   depreciation: 15,
+  quickrace: false,
 };
 
 const rarityInfo = [

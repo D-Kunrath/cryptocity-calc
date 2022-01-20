@@ -66,8 +66,9 @@ input[readonly] {
   cursor: default;
 }
 
-.base-tables {
-  display: flex;
+input[type="checkbox"] {
+  align-self: center;
+  margin-right: 15%;
 }
 
 .btn {
@@ -77,19 +78,96 @@ input[readonly] {
   text-transform: uppercase;
   background: #ffbc57;
   box-shadow: 2px 2px 0px #e19f3b;
-  border-radius: 30px;
+  border-radius: 0.3rem;
   border-width: 0;
+  cursor: pointer;
+}
+
+/* TABLES */
+
+.base-tables {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-table {
+  display: flex;
+  justify-content: center;
 }
 
 table {
   margin: 1rem;
+  border-radius: 0.3rem;
+  overflow: hidden;
+  color: #212529;
+}
+
+th {
+  text-transform: uppercase;
 }
 
 th,
 td {
-  border: 1px solid black;
-  padding: 2px 3px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-width: 0 1px;
+  padding: 8px;
 }
+
 td.number {
   text-align: right;
+}
+
+tfoot > tr,
+.row-even {
+  background-color: #ebeced;
+}
+
+thead > tr,
+.row-odd {
+  background-color: #f8f9fa;
+}
+
+tr {
+  position: relative;
+}
+
+tbody > tr:hover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* HELPERS */
+
+.helper {
+  position: absolute;
+  right: 100%;
+  top: 0;
+  z-index: 10;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 0.6rem;
+  padding: 0.2rem;
+  visibility: hidden;
+}
+
+.helper-mark {
+  font-size: 0.6rem;
+  cursor: help;
+  position: relative;
+}
+
+.helper-mark:hover .helper {
+  visibility: visible;
+}
+
+/* VISUALIZATION */
+
+.positive {
+  color: rgb(50, 30, 180);
+}
+
+.negative {
+  color: rgb(180, 39, 50);
 }

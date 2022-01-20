@@ -3,7 +3,6 @@ const resetBtn = document.querySelector(".reset-btn");
 
 const level = document.querySelector("#level");
 const select = document.querySelector("#rarity");
-
 let formValues = initialFormValues;
 
 const rarities = rarityInfo.map((item) => item.rarity);
@@ -26,20 +25,28 @@ const getAvgPrize = (day) => {
 const resetForm = () => {
   const ids = Object.keys(initialFormValues);
   ids.forEach((item) => {
-    document.querySelector(`#${item}`).value = initialFormValues[item];
+    if (item === "quickrace") {
+      document.querySelector(`#${item}`).checked = initialFormValues[item];
+    } else {
+      document.querySelector(`#${item}`).value = initialFormValues[item];
+    }
   });
 };
 
 const getForm = () => {
   const ids = Object.keys(initialFormValues);
+  console.log(ids);
   ids.forEach((item) => {
     const input = document.querySelector(`#${item}`);
     if (input.type === "number") {
       formValues[item] = parseFloat(input.value);
+    } else if (input.type === "checkbox") {
+      formValues[item] = input.checked;
     } else {
       formValues[item] = input.value;
     }
   });
+  console.log(formValues);
 };
 
 const createSelect = () => {
@@ -52,11 +59,13 @@ const createSelect = () => {
 const createPrizeTable = () => {
   const tbody = document.querySelector("#prize-avg tbody");
   tbody.innerHTML = "";
-  avgPrizes.forEach((item) => {
+  avgPrizes.forEach((item, i) => {
     tbody.innerHTML += `
-      <tr>
-        <td><= ${item.maxAge}</td>
-        <td>${item.avg.toFixed(2)}</td>
+      <tr class="${i % 2 ? "row-odd" : "row-even"}">
+        <td>
+          ${i === avgPrizes.length - 1 ? ">" : "<"}= ${item.maxAge}
+        </td>
+        <td class="${typeof item.avg}">${item.avg.toFixed(2)}</td>
       </tr>
     `;
   });
@@ -65,12 +74,12 @@ const createPrizeTable = () => {
 const createRarityTable = () => {
   const tbody = document.querySelector("#rarity-info tbody");
   tbody.innerHTML = "";
-  rarityInfo.forEach((item) => {
+  rarityInfo.forEach((item, i) => {
     tbody.innerHTML += `
-      <tr>
-        <td>${item.rarity}</td>
-        <td>${item.fuel}</td>
-        <td>${item.depreciation}</td>
+      <tr class="${i % 2 ? "row-odd" : "row-even"}">
+        <td class="${typeof item.rarity}">${item.rarity}</td>
+        <td class="${typeof item.fuel}">${item.fuel}</td>
+        <td class="${typeof item.depreciation}">${item.depreciation}</td>
       </td>
     `;
   });
@@ -80,16 +89,17 @@ const createRoiTable = () => {
   const tbody = document.querySelector("#roi-table tbody");
   tbody.innerHTML = "";
   const totalRuns = getFuel(formValues.rarity) / 15;
+  const quickrace = formValues.quickrace ? 1 : 0;
   const lastDayofDepreciation = avgPrizes[avgPrizes.length - 1].maxAge;
   let total = 0;
   for (let i = 0; i < lastDayofDepreciation; i += 1) {
     const day = i + 1;
-    const fix = day % getDepreciation(formValues.rarity) ? 0 : formValues.fix;
+    const fix = day % formValues.depreciation ? 0 : formValues.fix;
     const prize = (getAvgPrize(day) / 4) * totalRuns;
-    const totalDay = prize - fix - formValues.refuel;
+    const totalDay = prize - fix - formValues.refuel - quickrace;
     total += totalDay;
     tbody.innerHTML += `
-      <tr>
+      <tr class="${i % 2 ? "row-odd" : "row-even"}">
         <td class="${typeof day}">${day}</td>
         <td class="${typeof fix}">${fix}</td>
         <td class="${typeof prize}">${prize.toFixed(2)}</td>
@@ -106,6 +116,7 @@ const updateDepreciation = () => {
   const addPerLevels = Math.floor(parseInt(formValues.level) / 10);
   document.querySelector("#depreciation").value =
     getDepreciation(formValues.rarity) + addPerLevels;
+  getForm();
 };
 
 createSelect();
