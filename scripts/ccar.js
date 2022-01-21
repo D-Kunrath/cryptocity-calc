@@ -98,6 +98,7 @@ const createRoiTable = () => {
     const prize = (getAvgPrize(day) / 4) * totalRuns;
     const totalDay = prize - fix - formValues.refuel - quickrace;
     total += totalDay;
+    const roi = total - formValues.price;
     tbody.innerHTML += `
       <tr class="${i % 2 ? "row-odd" : "row-even"}">
         <td class="${typeof day}">${day}</td>
@@ -106,7 +107,12 @@ const createRoiTable = () => {
         <td class="${typeof totalDay}">${totalDay.toFixed(2)}</td>
         <td class='${typeof total} ${
       total >= formValues.price ? "positive" : "negative"
-    }'>${total.toFixed(2)}</td>
+    }'>
+          ${total.toFixed(2)}
+        </td>
+        <td class="${typeof roi} ${roi < 0 ? "negative" : "positive"}">
+          ${roi.toFixed(2)}
+        </td>
       </tr>
     `;
   }
