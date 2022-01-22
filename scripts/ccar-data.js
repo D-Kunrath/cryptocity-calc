@@ -1,5 +1,6 @@
 const initialFormValues = {
-  price: 0,
+  buy: 600,
+  sell: 600,
   level: 1,
   refuel: 2,
   fix: 40,
