@@ -95,11 +95,16 @@ const createRoiTable = () => {
   for (let i = 0; i < lastDayofDepreciation; i += 1) {
     const day = i + 1;
     const fix = day % formValues.depreciation ? 0 : formValues.fix;
-    const prize = (getAvgPrize(day) / 4) * totalRuns;
+    const prize =
+      (getAvgPrize(day) /
+        (getFuel(formValues.rarity) / constants.fuelPerRace)) *
+      totalRuns;
     const totalDay = prize - fix - formValues.refuel - quickrace;
     total += totalDay;
     const roi =
-      total - parseFloat(formValues.buy) - parseFloat(formValues.sell) * 0.15;
+      total -
+      parseFloat(formValues.buy) +
+      parseFloat(formValues.sell) * (1 - constants.sellTax);
     tbody.innerHTML += `
       <tr class="${i % 2 ? "row-odd" : "row-even"}">
         <td class="${typeof day}">${day}</td>
@@ -120,7 +125,9 @@ const createRoiTable = () => {
 };
 
 const updateDepreciation = () => {
-  const addPerLevels = Math.floor(parseInt(formValues.level) / 10);
+  const addPerLevels = Math.floor(
+    parseInt(formValues.level) / constants.levelsForExtraDay
+  );
   document.querySelector("#depreciation").value =
     getDepreciation(formValues.rarity) + addPerLevels;
   getForm();
