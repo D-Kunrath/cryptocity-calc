@@ -35,7 +35,6 @@ const resetForm = () => {
 
 const getForm = () => {
   const ids = Object.keys(initialFormValues);
-  console.log(ids);
   ids.forEach((item) => {
     const input = document.querySelector(`#${item}`);
     if (input.type === "number") {
@@ -46,7 +45,6 @@ const getForm = () => {
       formValues[item] = input.value;
     }
   });
-  console.log(formValues);
 };
 
 const createSelect = () => {
@@ -88,17 +86,14 @@ const createRarityTable = () => {
 const createRoiTable = () => {
   const tbody = document.querySelector("#roi-table tbody");
   tbody.innerHTML = "";
-  const totalRuns = getFuel(formValues.rarity) / 15;
+  const totalRuns = getFuel(formValues.rarity) / constants.fuelPerRace;
   const quickrace = formValues.quickrace ? 1 : 0;
   const lastDayofDepreciation = avgPrizes[avgPrizes.length - 1].maxAge;
   let total = 0;
   for (let i = 0; i < lastDayofDepreciation; i += 1) {
     const day = i + 1;
     const fix = day % formValues.depreciation ? 0 : formValues.fix;
-    const prize =
-      (getAvgPrize(day) /
-        (getFuel(formValues.rarity) / constants.fuelPerRace)) *
-      totalRuns;
+    const prize = (getAvgPrize(day) / 4) * totalRuns;
     const totalDay = prize - fix - formValues.refuel - quickrace;
     total += totalDay;
     const roi =
