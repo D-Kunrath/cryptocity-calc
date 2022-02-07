@@ -74,6 +74,6 @@ const avgPrizes = [
 
 const constants = {
   fuelPerRace: 15,
-  sellTax: 25 / 100,
+  sellTax: 10 / 100,
   levelsForExtraDay: 10,
 };
